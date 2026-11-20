@@ -1,21 +1,22 @@
-# Booth Brain · 展会第二大脑
+# 随听 · 交谈时的第二大脑
 
-A pocket interpreter for a noisy show floor. Show your visitor a translation in large type, and keep the background notes on your side. Static HTML, CSS and JavaScript. No build, application server, analytics or bundled keys.
+[手机打开随听](https://tobenot.github.io/booth-brain/) · [MIT](LICENSE)
 
-**试用：** 打开网页后选「看免 Key 示例」。真实对话在「连接我的模型」填写北京地域的百炼 Key，可选填 DeepSeek Key 用于概念卡。选对方语言，点「开始对话」。请告知在场的人。点大字展示和朗读时，当前句固定在屏幕上。
+说中文，给对方看大字译文或点朗读。对方用外语回答，你看中文。听分享或上课时可以关闭「双向翻译」，保留原文，点概念卡看背景。
 
-## Run / deploy
+1. 点「看免 Key 示例」试用，不开麦、不计费。
+2. 点「连接我的模型」。百炼北京地域 Key 用于识别和翻译，选填 DeepSeek Key 生成中文概念卡。
+3. 选对方语言，征得同意后点「开始对话」。保持页面在前台，说完停顿一下。切到后台会停止收音。
+
+音频直接发给百炼。启用概念卡时，最近十句原文直接发给 DeepSeek。费用记在使用者自己的账号。网站不保存 Key、录音或谈话。朗读使用设备提供的语音。
+
+## 开发与部署
 
 ```sh
+npm ci && npm test
 python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
 ```
 
-Open `http://localhost:8000` on the same machine. For a phone, serve `docs/` over HTTPS. GitHub Pages: **Settings → Pages → Deploy from a branch → main → /docs → Save**. Alternatively upload the contents of `docs/` to an HTTPS static host. No environment variables or build command.
+在本机打开 `http://localhost:8000`。部署时将 `docs/` 放到 HTTPS 静态托管即可，无构建步骤、无应用服务器。GitHub Pages 选择 `main` 分支的 `/docs`。
 
-## How it works
-
-The browser segments audio on pauses (or after 10 seconds of continuous speech) and encodes WAV. It sends each segment to Qwen ASR, reads the language annotation, and sends the text to Qwen MT. Chinese/Cantonese is translated to the selected visitor language; other recognized languages are translated to Chinese. Optional DeepSeek concept cards use the last ten utterances. Translation and cards do not wait on each other. Speech playback uses the device's voices. This is sentence-based, not streaming interpretation.
-
-Audio and recognized text go to Alibaba Cloud; if enabled, recognized text also goes to DeepSeek. Billing is on the user's accounts. Keys and conversation stay in page memory on the app side: refresh/close to clear. Hosting sees static requests, not conversations. Stopping capture cancels pending work; switching away stops the microphone. In a loud room, noise may be mistaken for speech. Check live API access and voices on your device before relying on it at an event.
-
-[Qwen ASR](https://help.aliyun.com/zh/model-studio/qwen-asr-api-reference) · [Qwen MT](https://help.aliyun.com/zh/model-studio/machine-translation/) · [DeepSeek](https://api-docs.deepseek.com/) · [MIT license](LICENSE)
+不写代码注释。用命名表达意图，用测试记录行为。`npm test` 同时执行 lint。

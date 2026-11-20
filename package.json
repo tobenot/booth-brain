@@ -1,1 +1,13 @@
-{"name":"booth-brain","private":true,"type":"module","scripts":{"test":"node --test tests/audio.test.js"}}
+{
+  "name": "booth-brain",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run lint && node --test tests/*.test.js",
+    "lint": "node scripts/lint.js"
+  },
+  "devDependencies": {
+    "acorn": "8.19.0",
+    "prettier": "3.10.1"
+  }
+}
