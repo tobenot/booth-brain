@@ -1,64 +1,72 @@
 <!doctype html>
 <html lang="zh-CN">
-  <meta charset="utf-8" /><meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  /><meta name="referrer" content="no-referrer" /><meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://dashscope.aliyuncs.com https://api.deepseek.com; object-src 'none'; base-uri 'none'; form-action 'none'"
-  /><title>随听 · 交谈时的第二大脑</title
-  ><link rel="stylesheet" href="./style.css" />
-  <main>
-    <header>
-      <small>SUI TING / FIELD NOTES</small>
-      <h1>随听</h1>
-      <p>交谈时的第二大脑。给对方看译文，点开概念自己读。</p>
-    </header>
-    <section>
-      <label><input type="checkbox" id="translate" checked /> 双向翻译</label
-      ><label id="languages"
-        >对方语言
-        <select id="lang">
-          <option value="en">English</option>
-          <option value="ja">日本語</option>
-          <option value="ko">한국어</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-          <option value="es">Español</option>
-        </select></label
-      >
-      <details id="settings">
-        <summary>连接我的模型</summary>
-        <label
-          >百炼 Key · 北京地域
-          <input id="ali" type="password" autocomplete="off" /></label
-        ><label
-          >DeepSeek Key · 概念卡（可选）
-          <input id="deep" type="password" autocomplete="off"
-        /></label>
-        <p>
-          语音发给百炼，启用概念卡后文字发给 DeepSeek。按你的账户计费，Key
-          不写入存储。请先告知交谈者。
-        </p>
-      </details>
-      <div class="controls">
-        <button id="start">开始对话</button
-        ><button id="stop" disabled>停止</button
-        ><button id="demo">看免 Key 示例</button>
-      </div>
-      <p id="status" role="status">尚未收音</p>
-    </section>
-    <section>
-      <h2>对话手记</h2>
-      <div id="turns">
-        <p id="empty">打开翻译和人交谈，或关闭翻译，听原话、看概念卡。</p>
-      </div>
-    </section>
-    <dialog id="panel">
-      <small id="caption"></small>
-      <p id="body"></p>
-      <button id="read">朗读</button> <button id="close">返回对话</button>
-    </dialog>
-  </main>
-  <script type="module" src="./app.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://dashscope.aliyuncs.com https://api.deepseek.com; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>随听 · 交谈时的第二大脑</title>
+    <link rel="stylesheet" href="./style.css?v=mono1" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>随听</h1>
+        <details id="settings">
+          <summary>设置</summary>
+          <div class="settings-body">
+            <label
+              ><input type="checkbox" id="translate" checked /> 双向翻译</label
+            ><label id="languages"
+              >对方语言
+              <select id="lang">
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="es">Español</option>
+              </select></label
+            ><label
+              >百炼 Key · 北京地域<input
+                id="ali"
+                type="password"
+                autocomplete="off" /></label
+            ><label
+              >DeepSeek Key · 概念卡（可选）<input
+                id="deep"
+                type="password"
+                autocomplete="off"
+            /></label>
+            <p>
+              语音发给百炼。填入 DeepSeek Key 后，原文也会发给
+              DeepSeek。按你的账户计费，请先告知交谈者。
+            </p>
+          </div>
+        </details>
+      </header>
+      <section aria-label="对话控制">
+        <div class="controls">
+          <button id="start">开始对话</button
+          ><button id="stop" disabled>停止收音</button
+          ><button id="demo">试用示例</button>
+        </div>
+        <p id="status" role="status"></p>
+      </section>
+      <section id="turns" aria-label="对话记录"></section>
+      <dialog id="panel" aria-labelledby="caption">
+        <div class="reading">
+          <small id="caption"></small>
+          <p id="body"></p>
+          <div>
+            <button id="close">返回对话</button><button id="read">朗读</button>
+          </div>
+        </div>
+      </dialog>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
 </html>
