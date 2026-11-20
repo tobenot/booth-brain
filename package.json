@@ -1,0 +1,1 @@
+{"name":"booth-brain","private":true,"type":"module","scripts":{"test":"node --test tests/audio.test.js"}}

@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://dashscope.aliyuncs.com https://api.deepseek.com; object-src 'none'; base-uri 'none'; form-action 'none'"><title>展会第二大脑 · Booth Brain</title><link rel="stylesheet" href="./style.css"><main>
+<header><small>BOOTH BRAIN / FIELD NOTES</small><h1>展会第二大脑</h1><p>给对方看译文，给自己留一张概念卡。</p></header>
+<section><label>对方语言 <select id="lang"><option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option></select></label>
+<details id="settings"><summary>连接我的模型</summary><label>百炼 Key · 北京地域 <input id="ali" type="password" autocomplete="off"></label><label>DeepSeek Key · 概念卡（可选） <input id="deep" type="password" autocomplete="off"></label><p>语音发给百炼，启用概念卡后文字发给 DeepSeek。按你的账户计费，Key 不写入存储。请先告知交谈者。</p></details>
+<div class="controls"><button id="start">开始对话</button><button id="stop" disabled>停止</button><button id="demo">看免 Key 示例</button></div><p id="status" role="status">尚未收音</p></section>
+<section><h2>对话手记</h2><div id="turns"><p id="empty">一句话结束后，这里会出现原文和译文。</p></div></section>
+<dialog id="panel"><small id="caption"></small><p id="body"></p><button id="read">朗读</button> <button id="close">返回对话</button></dialog></main><script type="module" src="./app.js"></script></html>
